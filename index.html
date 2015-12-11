@@ -15,7 +15,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Bookmark Organizer</a>
+          <a class="navbar-brand" href="#" ng-click="main.clearCategories()">Bookmark Organizer</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
@@ -28,14 +28,28 @@
     </nav>
     <main class="container-fluid">
       <div>
-        <ul>
+        <ul class="list-unstyled text-center">
           <li ng-repeat="bookmark in main.bookmarks | filter:{category:main.currentCategory}">
             <a href="{{bookmark.url}}">{{bookmark.title}}</a>
-            <span class="glyphicon glyphicon-pencil"></span>
+            <span class="glyphicon glyphicon-pencil" ng-click="main.startEditingBookmark()"></span>
           </li>
         </ul>
       </div>
     </main>
+    <div class="text-center" ng-if="main.createNew">
+      <hr />
+      <a href="#" ng-click="main.startCreatingBookmark()">Create a New Bookmark <span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <div class="text-center" ng-if="main.shouldShowCreating()">
+      <hr />
+      <p>Create Bookmark Area</p>
+      <button ng-click="main.cancelForm()">Cancel</button>
+    </div>
+    <div class="text-center" ng-if="main.shouldShowEditing()">
+      <hr />
+      <p>Edit Area</p>
+      <button ng-click="main.cancelForm()">Cancel</button>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
