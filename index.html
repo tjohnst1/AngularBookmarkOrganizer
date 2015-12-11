@@ -19,8 +19,8 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li ng-repeat="category in main.categories">
-              <a href="#">{{category.name}}</a>
+            <li ng-repeat="category in main.categories" ng-class="{ 'active': main.isCurrentCategory(category.name) }">
+              <a href="#" ng-click="main.setCategory(category.name)">{{category.name}}</a>
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -28,7 +28,12 @@
     </nav>
     <main class="container-fluid">
       <div>
-        <p>{{main.hello}}</p>
+        <ul>
+          <li ng-repeat="bookmark in main.bookmarks | filter:{category:main.currentCategory}">
+            <a href="{{bookmark.url}}">{{bookmark.title}}</a>
+            <span class="glyphicon glyphicon-pencil"></span>
+          </li>
+        </ul>
       </div>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

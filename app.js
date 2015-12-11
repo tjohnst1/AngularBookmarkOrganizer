@@ -17,4 +17,15 @@ app.controller('MainCtrl', function(){
     {"id": 4, "title": "YMCA", "url": "http://angular.js", "category": "Excercise"},
     {"id": 5, "title": "FIFA", "url": "http://angular.js", "category": "Soccer"}
   ];
+
+  this.currentCategory = "";
+
+  this.setCategory = function(category){
+    this.currentCategory = category;
+  };
+
+  this.isCurrentCategory = function(category){
+    return (this.currentCategory === category) && (this.currentCategory !== "")
+  }
+
 });
